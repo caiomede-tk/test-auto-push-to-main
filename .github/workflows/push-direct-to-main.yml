@@ -1,0 +1,18 @@
+name: Push direct to main
+
+on: workflow_dispatch
+
+jobs:
+  update-version:
+    name: Update version in main
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Increase version
+        run: expr $(cat version.txt) + 1 > version.txt
+      - name: Commit the updates
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "feat: new version"
+          branch: main
