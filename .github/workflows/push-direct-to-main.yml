@@ -1,6 +1,8 @@
 name: Push direct to main
 
-on: workflow_dispatch
+on:
+  push:
+    branches: ["main"]
 
 jobs:
   update-version:
