@@ -9,6 +9,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+        with:
+          ssh-key: ${{ secrets.DEPLOY_KEY }}
       - name: Increase version
         run: expr $(cat version.txt) + 1 > version.txt
       - name: Commit the updates
